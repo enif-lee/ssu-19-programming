@@ -92,3 +92,62 @@ c언어 표준 인터페이스로 제공되는 qsort는 quick sort 구현체로 
     int items[] = {1, 2, 3, 4, 5, 6};
     qsort(items, 6, sizeof(items[0]), compare);
 ```
+
+### 2019.05.21 struct, union, enum
+
+#### 구조체
+
+구조체는 여러 값들의 집합으로 하나의 구조체 변수 선언시 구조체 내부의 모든 필드의
+메모리 공간을 합한 만큼 할당됨.
+
+##### 구조체 선언
+
+```c
+// 선언 방식 1
+struct Sample {
+    char *name;
+    int price;
+};
+struct Sample1 sample1;
+
+// 선언 방식 2
+struct Sample {
+    char *name;
+    int price;
+} sample1;
+
+// 선언 방식 3
+typedef struct Sample { // 이름 Sample은 없어도 됨
+    char *name;
+    int price
+} SAMPLE;
+
+SAMPLE sample1;
+```
+
+##### 구조체 할당
+
+```c
+typedef {
+    char *name;
+    int price;
+} PRODUCT;
+
+PRODUCT product1 = { "something pen", 3200 };
+```
+
+#### 공용체
+
+구조체와 선언 방식자체는 거의 유사함, 다만 모든 변수가 가장 큰 타입만큼 할당 받은
+메모리 공간은 공유하므로 다른 필드의 값을 침해함. 사용시 유의해야함.
+
+```c
+union UnionSample {
+    char *name;
+    int price;
+}
+union UnionSample sample;
+sample.price = 100;
+```
+
+#### 열거형 타입
